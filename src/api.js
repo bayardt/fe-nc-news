@@ -8,8 +8,15 @@ export const getTrendingArticle = () => {
   });
 };
 
-export const getArticles = () => {
-  return axios.get(`${baseURL}/articles`).then(({ data }) => {
+export const getArticles = (topic) => {
+  const topicQuery = topic ? `?topic=${topic}` : "";
+  return axios.get(`${baseURL}/articles${topicQuery}`).then(({ data }) => {
+    return data;
+  });
+};
+
+export const getTopics = () => {
+  return axios.get(`${baseURL}/topics`).then(({ data }) => {
     return data;
   });
 };
