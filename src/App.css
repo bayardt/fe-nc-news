@@ -1,4 +1,4 @@
-@import url(http://fonts.cdnfonts.com/css/acherus-grotesque);
+@import url(https://fonts.googleapis.com/css2?family=Lato&family=Libre+Franklin:wght@700&display=swap);
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -9,17 +9,22 @@ h1 {
 }
 
 h2 {
-    font-size: 60;
-    font-weight: bold;
-    font-family: 'Acherus Grotesque';
+    font-size: 96;
 }
 
 h3 {
-    font-size: 48;
-    font-family: 'Acherus Grotesque';
+    font-size: 60;
+    font-style:italic;
+    font-family: 'Lato';
 }
 
 h4 {
+    font-size: 48;
+    font-variant: small-caps;
+    font-family: 'Lato';
+}
+
+h5 {
     font-size: 34;
     
 }
