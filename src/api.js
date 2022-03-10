@@ -32,3 +32,12 @@ export const getUserByUsername = (authorUsername) => {
     return data;
   });
 }
+
+export const patchArticleScore = (article_id, updatedScore) => {
+  return axios
+    .patch(`${baseURL}/articles/${article_id}`, {inc_votes: updatedScore})
+    .then(({ data }) => {
+      console.log(data)
+      return data;
+    });
+};
