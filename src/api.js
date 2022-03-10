@@ -15,6 +15,12 @@ export const getArticles = (topic) => {
   });
 };
 
+export const getSingleArticle = (article_id) => {
+  return axios.get(`${baseURL}/articles/${article_id}`).then(({ data }) => {
+    return data;
+  });
+};
+
 export const getTopics = () => {
   return axios.get(`${baseURL}/topics`).then(({ data }) => {
     return data;

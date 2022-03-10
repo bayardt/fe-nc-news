@@ -4,7 +4,7 @@ import NCNewsLogo from "../images/NCNewsLogo.png";
 import * as api from "../api";
 
 export default function Header() {
-  const [topics, setTopics] = useState([""]);
+  const [topics, setTopics] = useState([]);
 
   useEffect(() => {
     api.getTopics().then(({ topics }) => setTopics(topics));
@@ -18,12 +18,8 @@ export default function Header() {
       <nav className="m-topicsNav">
         <Link to={"/"}>| home |</Link> 
           {topics.map((topic) => {
-            const topicPath = `/topic/${topic.slug}`
             return (
-              <Link
-                to={topicPath}
-                key={topic.slug}
-              >
+              <Link to={`/topic/${topic.slug}`} key={topic.slug}>
                 | {topic.slug} |
               </Link>
             );
