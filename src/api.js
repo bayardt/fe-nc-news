@@ -26,3 +26,9 @@ export const getTopics = () => {
     return data;
   });
 };
+
+export const getUserByUsername = (authorUsername) => {
+  return axios.get(`${baseURL}/users?username=${authorUsername}`).then(({ data }) => {
+    return data;
+  });
+}
