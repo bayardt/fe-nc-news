@@ -22,15 +22,14 @@ export default function Header() {
         <img src={NCNewsLogo} alt="Northcoders News" />
       </div>
       <nav className="m-topicsNav">
-        <Link to={"/"}>| home |</Link>
-        {topics.map((topic) => {
-          const topicPath = `/topic/${topic.slug}`;
-          return (
-            <Link to={topicPath} key={topic.slug}>
-              | {topic.slug} |
-            </Link>
-          );
-        })}
+        <Link to={"/"}>| home |</Link> 
+          {topics.map((topic) => {
+            return (
+              <Link to={`/topic/${topic.slug}`} key={topic.slug}>
+                | {topic.slug} |
+              </Link>
+            );
+          })}
       </nav>
     </div>
   );

@@ -21,7 +21,7 @@ export default function ArticleList() {
     <div className="o-articleList">
       <div className="m-articleList">
         {articles.map((article) => {
-          return <ArticleCard key={article.article_id} article={article} Í />;
+          return <ArticleCard key={article.article_id} article={article} />;
         })}
       </div>
     </div>
