@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-export default function ArticleCard({article}) {
+export default function ArticleCard({ article }) {
   return (
     <div className="m-articleCard">
       <h4 className="a-articleCard__topic">{article.topic}</h4>

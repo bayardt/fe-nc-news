@@ -5,11 +5,17 @@ import * as api from "../api";
 
 export default function Header() {
   const [topics, setTopics] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    api.getTopics().then(({ topics }) => setTopics(topics));
+    setIsLoading(true);
+    api.getTopics().then(({ topics }) => {
+      setTopics(topics);
+      setIsLoading(false);
+    });
   }, []);
 
+  if (isLoading) return <p>Loading...</p>;
   return (
     <div className="o-header">
       <div className="m-header__Logo">
