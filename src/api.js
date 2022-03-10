@@ -33,6 +33,14 @@ export const getUserByUsername = (authorUsername) => {
   });
 }
 
+export const getArticleComments = (article_id) => {
+  return axios
+    .get(`${baseURL}/articles/${article_id}/comments`)
+    .then(({ data }) => {
+      return data;
+    });
+};
+
 export const patchArticleScore = (article_id, updatedScore) => {
   return axios
     .patch(`${baseURL}/articles/${article_id}`, {inc_votes: updatedScore})

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import * as api from "../api";
+import CommentList from "./CommentList";
 
 export default function ArticleView() {
   const [currentArticle, setCurrentArticle] = useState([]);
@@ -62,6 +63,8 @@ export default function ArticleView() {
       <article className="a-articleView__article">
         {currentArticle.body}
       </article>
+      <hr />
+      <article><CommentList article_id={article_id}/></article> 
     </div>
   );
 }
