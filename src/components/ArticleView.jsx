@@ -2,23 +2,44 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import * as api from "../api";
 
-export default function ArticleView({ article }) {
+export default function ArticleView() {
   const [currentArticle, setCurrentArticle] = useState([]);
   const [currentAuthor, setCurrentAuthor] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { article_id } = useParams();
+  const [currentScore, setCurrentScore] = useState([]);
+  const [err, setErr] = useState(null);
 
   const getAuthorName = (username) => {
-    api.getUserByUsername(username).then(({users}) => {
-      setCurrentAuthor(users[0].name)
-    })
-  }
+    api.getUserByUsername(username).then(({ users }) => {
+      setCurrentAuthor(users[0].name);
+    });
+  };
+
+  const voteInc = () => {
+    setCurrentScore((currScore) => currScore + 1);
+    console.log(currentScore);
+    api.patchArticleScore(article_id, 1).catch((err) => {
+      setCurrentScore((currScore) => currScore - 1);
+      setErr("Something went wrong, try again.");
+    });
+  };
+
+  const voteDec = () => {
+    setCurrentScore((currScore) => currScore - 1);
+    console.log(currentScore);
+    api.patchArticleScore(article_id, -1).catch((err) => {
+      setCurrentScore((currScore) => currScore + 1);
+      setErr("Something went wrong, try again.");
+    });
+  };
 
   useEffect(() => {
     setIsLoading(true);
     api.getSingleArticle(article_id).then(({ article }) => {
       setCurrentArticle(article);
       getAuthorName(article.author);
+      setCurrentScore(article.votes);
       setIsLoading(false);
     });
   }, []);
@@ -28,6 +49,15 @@ export default function ArticleView({ article }) {
     <div className="m-articleView">
       <h4 className="a-articleView__topic">{currentArticle.topic}</h4>
       <h3 className="a-articleView__title">{currentArticle.title}</h3>
+      {err ? (
+        <p>{err}</p>
+      ) : (
+        <h6>
+          <button onClick={voteDec}>-</button>
+          {currentScore} votes
+          <button onClick={voteInc}>+</button>
+        </h6>
+      )}
       <h5>{currentAuthor}</h5>
       <article className="a-articleView__article">
         {currentArticle.body}
