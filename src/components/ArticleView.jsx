@@ -64,7 +64,7 @@ export default function ArticleView() {
       <hr />
       <div>
         <article>
-          <CommentList article_id={article_id} />
+          <CommentList key='CommentList' article_id={article_id} />
         </article>
       </div>
     </div>

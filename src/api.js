@@ -63,3 +63,11 @@ export const postArticleComment = (article_id, currentUser, commentBody) => {
       return data;
     });
 };
+
+export const deleteComment = (commentId) => {
+  return axios
+    .delete(`${baseURL}/comments/${commentId}`)
+    .then(({ data }) => {
+      return data;
+    });
+}
