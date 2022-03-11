@@ -10,9 +10,11 @@ export const getTrendingArticle = () => {
     });
 };
 
-export const getArticles = (topic) => {
-  const topicQuery = topic ? `?topic=${topic}` : "";
-  return axios.get(`${baseURL}/articles${topicQuery}`).then(({ data }) => {
+export const getArticles = (topic, sortCriteria, sortOrder) => {
+  const sortQuery = sortCriteria ? `sort_by=${sortCriteria}` : ""
+  const orderQuery = sortOrder ? `order=${sortOrder}` : ""
+  const topicQuery = topic ? `topic=${topic}` : "";
+  return axios.get(`${baseURL}/articles?${topicQuery}&${sortQuery}&${orderQuery}`).then(({ data }) => {
     return data;
   });
 };
