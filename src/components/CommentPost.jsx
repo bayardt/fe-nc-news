@@ -5,7 +5,8 @@ export default function CommentPost({ currentUser, article_id}) {
   const [newComment, setNewComment] = useState();
 
   const commentHandler = (e) => {
-    api.postArticleComment(article_id, currentUser, newComment)
+      e.preventDefault();
+    api.postArticleComment(article_id, currentUser, newComment).then((res) => console.log(res))
   };
 
   return (
