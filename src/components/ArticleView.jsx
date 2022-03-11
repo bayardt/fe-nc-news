@@ -19,7 +19,6 @@ export default function ArticleView() {
 
   const voteInc = () => {
     setCurrentScore((currScore) => currScore + 1);
-    console.log(currentScore);
     api.patchArticleScore(article_id, 1).catch((err) => {
       setCurrentScore((currScore) => currScore - 1);
       setErr("Something went wrong, try again.");
@@ -28,7 +27,6 @@ export default function ArticleView() {
 
   const voteDec = () => {
     setCurrentScore((currScore) => currScore - 1);
-    console.log(currentScore);
     api.patchArticleScore(article_id, -1).catch((err) => {
       setCurrentScore((currScore) => currScore + 1);
       setErr("Something went wrong, try again.");
@@ -64,7 +62,11 @@ export default function ArticleView() {
         {currentArticle.body}
       </article>
       <hr />
-      <article><CommentList article_id={article_id}/></article> 
+      <div>
+        <article>
+          <CommentList article_id={article_id} />
+        </article>
+      </div>
     </div>
   );
 }

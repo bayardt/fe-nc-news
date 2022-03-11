@@ -3,9 +3,11 @@ import axios from "axios";
 const baseURL = "https://nc-news-bt22.herokuapp.com/api";
 
 export const getTrendingArticle = () => {
-  return axios.get(`${baseURL}/articles?sort_by=comment_count&limit=1`).then(({ data }) => {
-    return data;
-  });
+  return axios
+    .get(`${baseURL}/articles?sort_by=comment_count&limit=1`)
+    .then(({ data }) => {
+      return data;
+    });
 };
 
 export const getArticles = (topic) => {
@@ -28,10 +30,12 @@ export const getTopics = () => {
 };
 
 export const getUserByUsername = (authorUsername) => {
-  return axios.get(`${baseURL}/users?username=${authorUsername}`).then(({ data }) => {
-    return data;
-  });
-}
+  return axios
+    .get(`${baseURL}/users?username=${authorUsername}`)
+    .then(({ data }) => {
+      return data;
+    });
+};
 
 export const getArticleComments = (article_id) => {
   return axios
@@ -43,9 +47,19 @@ export const getArticleComments = (article_id) => {
 
 export const patchArticleScore = (article_id, updatedScore) => {
   return axios
-    .patch(`${baseURL}/articles/${article_id}`, {inc_votes: updatedScore})
+    .patch(`${baseURL}/articles/${article_id}`, { inc_votes: updatedScore })
     .then(({ data }) => {
-      console.log(data)
+      return data;
+    });
+};
+
+export const postArticleComment = (article_id, currentUser, commentBody) => {
+  return axios
+    .post(`${baseURL}/articles/${article_id}/comments`, {
+      username: currentUser,
+      body: commentBody,
+    })
+    .then(({ data }) => {
       return data;
     });
 };
