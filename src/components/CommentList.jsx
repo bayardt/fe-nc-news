@@ -21,7 +21,7 @@ export default function CommentList({ article_id }) {
   return (
     <div className="m-commentList">
       <h3 className="a-commentList__header">Comments</h3>
-      <CommentPost currentUser={currentUser} article_id={article_id} />
+      <CommentPost currentUser={currentUser} article_id={article_id} comments={comments} setComments={setComments}/>
       {comments.map((comment) => {
         return <CommentCard comment={comment} key={comment.comment_id} />;
       })}
