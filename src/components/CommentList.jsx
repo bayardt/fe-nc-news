@@ -30,7 +30,7 @@ export default function CommentList() {
       setComments(comments);
       setIsLoading(false);
     });
-  }, [remainingComments]);
+  }, [remainingComments, article_id]);
 
   if (isLoading) return <p>Loading...</p>;
   return (

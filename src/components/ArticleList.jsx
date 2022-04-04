@@ -5,8 +5,6 @@ import * as api from "../api";
 
 export default function ArticleList() {
   const [articles, setArticles] = useState([]);
-  const [sortCriteria, setSortCriteria] = useState('created_at');
-  const [sortOrder, setSortOrder] = useState('desc');
   const [isLoading, setIsLoading] = useState(true);
   const { topic_slug } = useParams();
 
