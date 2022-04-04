@@ -8,6 +8,7 @@ export default function CommentCard({ comment }) {
         {comment.author} | {comment.created_at} | {comment.votes} Votes
       </h6>
       <p className="a-commentCard__body">{comment.body}</p>
+      
     </div>
   );
 }

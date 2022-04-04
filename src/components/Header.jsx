@@ -17,33 +17,20 @@ export default function Header() {
 
   if (isLoading) return <p>Loading...</p>;
   return (
-    <section>
+    <div className="o-header">
       <div className="m-header__Logo">
-        <Link to={"/"}>
-          <img src={NCNewsLogo} alt="Northcoders News" />
-        </Link>
+        <img src={NCNewsLogo} alt="Northcoders News" />
       </div>
       <nav className="m-topicsNav">
-        <ul>
-          <li>
-            <Link to={"/"}>home</Link>
-          </li>
-          <li>
-            <a href="#">topics</a>
-            <ul>
-              {topics.map((topic) => {
-                return (
-                  <li>
-                    <Link to={`/topic/${topic.slug}`} key={topic.slug}>
-                      {topic.slug}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </li>
-        </ul>
+        <Link to={"/"}>| home |</Link> 
+          {topics.map((topic) => {
+            return (
+              <Link to={`/topic/${topic.slug}`} key={topic.slug}>
+                | {topic.slug} |
+              </Link>
+            );
+          })}
       </nav>
-    </section>
+    </div>
   );
 }

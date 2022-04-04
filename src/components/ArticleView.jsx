@@ -35,53 +35,38 @@ export default function ArticleView() {
 
   useEffect(() => {
     setIsLoading(true);
-    api
-      .getSingleArticle(article_id)
-      .then(({ article }) => {
-        if (!article) return;
-        setCurrentArticle(article);
-        getAuthorName(article.author);
-        setCurrentScore(article.votes);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setErr(error);
-        setIsLoading(false);
-      });
-  }, [article_id]);
+    api.getSingleArticle(article_id).then(({ article }) => {
+      setCurrentArticle(article);
+      getAuthorName(article.author);
+      setCurrentScore(article.votes);
+      setIsLoading(false);
+    });
+  }, []);
 
-  if (isLoading) return <p> Loading...</p>;
-  if (err) {
+  if (isLoading) return <p>Loading...</p>;
   return (
-    <section>
-      <h3>{err.message}</h3>
-    </section>
-  )};
-  return (
-    <article>
-      <sup className="a-articleView__topic">{currentArticle.topic}</sup>
+    <div className="m-articleView">
+      <h4 className="a-articleView__topic">{currentArticle.topic}</h4>
       <h3 className="a-articleView__title">{currentArticle.title}</h3>
+      {err ? (
+        <p>{err}</p>
+      ) : (
+        <h6>
+          <button onClick={voteDec}>-</button>
+          {currentScore} votes
+          <button onClick={voteInc}>+</button>
+        </h6>
+      )}
       <h5>{currentAuthor}</h5>
       <article className="a-articleView__article">
         {currentArticle.body}
       </article>
-      <section>
-        <p className="m-articleVotes">
-          <button className="a-articleVotes__button" onClick={voteDec}>
-            -
-          </button>
-          {currentScore} votes
-          <button className="a-articleVotes__button" onClick={voteInc}>
-            +
-          </button>
-        </p>
-      </section>
       <hr />
       <div>
         <article>
-          <CommentList key="CommentList" article_id={article_id} />
+          <CommentList key='CommentList' article_id={article_id} />
         </article>
       </div>
-    </article>
+    </div>
   );
 }
