@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 import * as api from "../api";
 import CommentList from "./CommentList";
 
@@ -49,7 +48,7 @@ export default function ArticleView() {
         setErr(error);
         setIsLoading(false);
       });
-  }, []);
+  }, [article_id]);
 
   if (isLoading) return <p> Loading...</p>;
   if (err) {
