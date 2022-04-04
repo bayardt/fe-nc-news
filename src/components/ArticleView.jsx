@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as api from "../api";
 import CommentList from "./CommentList";
 
@@ -35,13 +36,20 @@ export default function ArticleView() {
 
   useEffect(() => {
     setIsLoading(true);
-    api.getSingleArticle(article_id).then(({ article }) => {
-      setCurrentArticle(article);
-      getAuthorName(article.author);
-      setCurrentScore(article.votes);
-      setIsLoading(false);
-    });
-  }, [article_id]);
+    api
+      .getSingleArticle(article_id)
+      .then(({ article }) => {
+        if (!article) return;
+        setCurrentArticle(article);
+        getAuthorName(article.author);
+        setCurrentScore(article.votes);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setErr(error);
+        setIsLoading(false);
+      });
+  }, []);
 
   if (isLoading) return <p>Loading...</p>;
   return (
