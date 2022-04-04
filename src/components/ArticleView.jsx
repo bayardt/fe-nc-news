@@ -41,7 +41,7 @@ export default function ArticleView() {
       setCurrentScore(article.votes);
       setIsLoading(false);
     });
-  }, []);
+  });
 
   if (isLoading) return <p>Loading...</p>;
   return (
