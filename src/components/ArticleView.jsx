@@ -58,11 +58,15 @@ export default function ArticleView() {
       {err ? (
         <p>{err}</p>
       ) : (
-        <h6>
-          <button onClick={voteDec}>-</button>
+        <p>
+          <button onClick={voteDec} role="button">
+            -
+          </button>
           {currentScore} votes
-          <button onClick={voteInc}>+</button>
-        </h6>
+          <button onClick={voteInc} role="button">
+            +
+          </button>
+        </p>
       )}
       <h5>{currentAuthor}</h5>
       <article className="a-articleView__article">
@@ -71,7 +75,7 @@ export default function ArticleView() {
       <hr />
       <div>
         <article>
-          <CommentList key='CommentList' article_id={article_id} />
+          <CommentList key="CommentList" article_id={article_id} />
         </article>
       </div>
     </div>
