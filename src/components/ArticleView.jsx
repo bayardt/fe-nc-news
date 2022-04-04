@@ -10,6 +10,8 @@ export default function ArticleView() {
   const { article_id } = useParams();
   const [currentScore, setCurrentScore] = useState([]);
   const [err, setErr] = useState(null);
+  const [votedUp, setVotedUp] = useState(false);
+  const [votedDown, setVotedDown] = useState(false);
 
   const getAuthorName = (username) => {
     api.getUserByUsername(username).then(({ users }) => {
@@ -18,6 +20,10 @@ export default function ArticleView() {
   };
 
   const voteInc = () => {
+     if (votedUp) return;
+     setVotedUp(true);
+     if (votedDown) setVotedUp(false);
+     setVotedDown(false);
     setCurrentScore((currScore) => currScore + 1);
     api.patchArticleScore(article_id, 1).catch((err) => {
       setCurrentScore((currScore) => currScore - 1);
@@ -26,6 +32,10 @@ export default function ArticleView() {
   };
 
   const voteDec = () => {
+     if (votedDown) return;
+     setVotedDown(true);
+     if (votedUp) setVotedDown(false);
+     setVotedUp(false);
     setCurrentScore((currScore) => currScore - 1);
     api.patchArticleScore(article_id, -1).catch((err) => {
       setCurrentScore((currScore) => currScore + 1);
@@ -59,13 +69,9 @@ export default function ArticleView() {
         <p>{err}</p>
       ) : (
         <p>
-          <button onClick={voteDec}>
-            -
-          </button>
+          <button onClick={voteDec}>-</button>
           {currentScore} votes
-          <button onClick={voteInc}>
-            +
-          </button>
+          <button onClick={voteInc}>+</button>
         </p>
       )}
       <h5>{currentAuthor}</h5>

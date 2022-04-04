@@ -11,6 +11,7 @@ export default function ArticleCard({ article }) {
       </Link>
       <article className="a-articleCard__article">{article.body}</article>
       <br />
+      <hr />
     </div>
   );
 }

@@ -73,3 +73,11 @@ export const deleteComment = (commentId) => {
       return data;
     });
 }
+
+export const patchCommentScore = (comment_id, updatedScore) => {
+  return axios
+    .patch(`${baseURL}/comments/${comment_id}`, { inc_votes: updatedScore })
+    .then(({ data }) => {
+      return data;
+    });
+};
