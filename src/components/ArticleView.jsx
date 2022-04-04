@@ -59,11 +59,11 @@ export default function ArticleView() {
         <p>{err}</p>
       ) : (
         <p>
-          <button onClick={voteDec} role="button">
+          <button onClick={voteDec}>
             -
           </button>
           {currentScore} votes
-          <button onClick={voteInc} role="button">
+          <button onClick={voteInc}>
             +
           </button>
         </p>
