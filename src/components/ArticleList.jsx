@@ -9,38 +9,29 @@ export default function ArticleList() {
   const [sortOrder, setSortOrder] = useState('desc');
   const [isLoading, setIsLoading] = useState(true);
   const { topic_slug } = useParams();
+  const [err, setErr] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
     api
-      .getArticles(topic_slug, sortCriteria, sortOrder)
+      .getArticles(topic_slug)
       .then(({ articles }) => {
         setArticles(articles);
         setIsLoading(false);
+      })
+      .catch((error) => {
+        setErr(error);
+        setIsLoading(false);
       });
-  }, [topic_slug, sortCriteria, sortOrder]);
+  }, [topic_slug]);
 
   if (isLoading) return <p>Loading...</p>;
+  if (err) return <section><h3>{err.message}</h3></section>;
   return (
-    <div className="o-articleList">
-      <div className="m-articleList__Sorter">
-        <select value={sortCriteria} onChange={(e) => setSortCriteria(e.target.value)}>
-          <option value="created_at">Most Recent</option>
-          <option value="comment_count">Most Commented</option>
-          <option value="votes">Most Voted</option>
-        </select>
-        <select
-          value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}
-        >
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
-        </select>
-      </div>
-      <div className="m-articleList__List">
-        {articles.map((article) => {
-          return <ArticleCard key={article.article_id} article={article} />;
-        })}
-      </div>
-    </div>
+    <section>
+      {articles.map((article) => {
+        return <ArticleCard key={article.article_id} article={article} />;
+      })}
+    </section>
   );
 }

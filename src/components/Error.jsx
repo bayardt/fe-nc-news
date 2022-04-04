@@ -2,7 +2,10 @@ import React from 'react'
 
 export default function Error({ error }) {
   return (
-    <div><p>
-        {error ? `${error}` : "no error"}</p></div>
-  )
+    <div>
+      <h3>
+        <section>{error ? `${error}` : "This page does not exist."}</section>
+      </h3>
+    </div>
+  );
 }

@@ -22,7 +22,7 @@ export const getArticles = (topic, sortCriteria, sortOrder) => {
 export const getSingleArticle = (article_id) => {
   return axios.get(`${baseURL}/articles/${article_id}`).then(({ data }) => {
     return data;
-  });
+  })
 };
 
 export const getTopics = () => {
@@ -65,3 +65,11 @@ export const postArticleComment = (article_id, currentUser, commentBody) => {
       return data;
     });
 };
+
+export const deleteComment = (commentId) => {
+  return axios
+    .delete(`${baseURL}/comments/${commentId}`)
+    .then(({ data }) => {
+      return data;
+    });
+}
