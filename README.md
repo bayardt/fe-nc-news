@@ -69,7 +69,7 @@ Node v17.0.0 or higher is recommended on your development machine to work with t
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/bayardt/repo_name.git
+   git clone https://github.com/bayardt/fe-nc-news.git
    ```
 2. Install NPM packages
    ```sh
